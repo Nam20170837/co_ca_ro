@@ -91,9 +91,9 @@ void Controller::E()
 	int i1 = 0;
 	M.read_file1("caro1.ini");
 	int i2 = M.v1.size();
+	int a[3];
 	for (int i = 0;i < i2; i = i+2)
 	{
-		int a[3];
 		a[0] = M.v1[i] + 1;
 		a[1] = M.v1[i+1] + 1;
 		if (i1 == 0)
@@ -111,5 +111,13 @@ void Controller::E()
 		V.show(M.M);
 		cout << endl;
 		this_thread::sleep_for(std::chrono::milliseconds(2000));
+	}
+	if (a[2] == 0)
+	{
+		cout << "X WIN:" << endl;
+	}
+	else
+	{
+		cout << "O WIN:" << endl;
 	}
 }
