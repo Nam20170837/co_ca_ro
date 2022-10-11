@@ -1,7 +1,7 @@
 ﻿  Controller.cpp
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(93,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Model_n.cpp
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Model_n.cpp(304,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Model_n.cpp(329,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Source.cpp
-  View.cpp
   Generating Code...
   CA_RO.vcxproj -> C:\Users\phamn\source\repos\CA_RO\x64\Debug\CA_RO.exe

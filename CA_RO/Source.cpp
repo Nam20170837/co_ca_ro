@@ -9,8 +9,50 @@
 using namespace std;
 
 int main()
-{
-	Controller nam;
-	nam.C();
+{ 
+	int chosse = 0;
+	while (chosse != 3)
+	{
+		cout << "NHAP LUA CHON" << endl;
+		cout << "1: CHOI TIEP" << endl;
+		cout << "2: XUAT THONG TIN" << endl;
+		cout << "3: DUNG CHOI" << endl;
+		cout << "4: IN TRAN DAU TRUOC"<<endl;
+		cin >> chosse;
+		while (chosse != 1 && chosse != 2 && chosse != 3 && chosse != 4)
+		{
+			cout << "NHAP LUA CHON" << endl;
+			cout << "1: CHOI TIEP" << endl;
+			cout << "2: XUAT THONG TIN" << endl;
+			cout << "3: DUNG CHOI" << endl;
+			cout << "4: IN TRAN DAU TRUOC" << endl;
+			cin >> chosse;
+		}
+		if (chosse == 1)
+		{
+			Controller nam;
+			nam.C();
+		}
+		else if (chosse == 2)
+		{
+			Controller nam;
+			string name;
+			cout << "Enter the name:";
+			cin.ignore();
+			getline(cin, name);
+			
+			nam.D(name);
+		}
+		else if (chosse == 4)
+		{
+			Controller nam;
+			nam.E();
+		}
+		else if (chosse == 3)
+		{
+			break;
+		}
+		
+	}
 	return 0;
 }

@@ -1,6 +1,9 @@
 #pragma once
 #include"Model_n.h"
 #include"View.h"
+#include"playerr.h"
+#include <chrono>
+#include <thread>
 class Controller
 {
 public:
@@ -11,5 +14,7 @@ public:
 public:
 	void C();
 	bool check();
+	void D(string s);
+	void E();
 };
 

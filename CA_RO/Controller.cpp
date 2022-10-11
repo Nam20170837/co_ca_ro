@@ -54,12 +54,62 @@ void Controller:: C()
 			this->i_m[2] = 0;
 		}
 	}
-	ifstream filein;
-	filein.open("caro.ini", ios_base::in);
-	M.inport_infor(filein,V.player_1,V.player_2, start);
-	filein.close();
-	ofstream fileout;
-	fileout.open("caro.ini");
-	M.outport_infor(fileout);
-	filein.close();
+	M.inport_infor("caro.ini", V.player_1, V.player_2, start);
+	M.outport_infor("caro.ini");
+	ofstream out_caro1;
+	out_caro1.open("caro1.ini");
+	out_caro1.clear();
+	for (int i = 0; i < M.v1.size(); i++)
+	{
+		out_caro1 << M.v1[i];
+		if (i != M.v1.size() - 1)
+		{
+			out_caro1 << ",";
+		}
+
+	}
+}
+ 
+void Controller::D(string s)
+{
+	nguoichoi* nc = static_cast<nguoichoi*>(M.find_infor("caro.ini",s));
+	cout << "Information of player:"<<endl;
+	cout << "Name:" << nc[0].name << endl;
+	cout << "Win:" << nc[0].thang << endl;
+	cout << "Loser:" << nc[0].thua << endl;
+	cout << "Draw:" << nc[0].hoa << endl;
+	cout << "Information of same player:" << endl;
+	cout << "Name:" << nc[1].name << endl;
+	cout << "Win:" << nc[1].thang << endl;
+	cout << "Loser:" << nc[1].thua << endl;
+	cout << "Draw:" << nc[1].hoa << endl;
+	delete nc;
+}
+
+void Controller::E()
+{
+	int i1 = 0;
+	M.read_file1("caro1.ini");
+	int i2 = M.v1.size();
+	for (int i = 0;i < i2; i = i+2)
+	{
+		int a[3];
+		a[0] = M.v1[i] + 1;
+		a[1] = M.v1[i+1] + 1;
+		if (i1 == 0)
+		{
+			a[2] = 0;
+			i1 = 1;
+		}
+		else
+		{
+			a[2] = 1;
+			i1 = 0;
+		}
+		M.input_M1(a);
+		M.input_M();
+		V.show(M.M);
+		cout << endl;
+		this_thread::sleep_for(std::chrono::milliseconds(2000));
+	}
 }

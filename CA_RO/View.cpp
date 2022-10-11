@@ -57,8 +57,10 @@ void View::import_XY(int XY[3])
 void View::user()
 {
 	cout << "Enter the name of Player_1:";
+	cin.ignore();
 	getline(cin, this->player_1);
 	cout << "Enter the name of Player_2:";
+	//cin.ignore();
 	getline(cin, this->player_2);
 }
 

@@ -19,6 +19,7 @@ bool Model_n::input_M1(int c_M1[3])
 		return false;
 	}
 }
+
 void Model_n::input_M()
 {
 	if (this->M1[2] == 0)
@@ -29,6 +30,8 @@ void Model_n::input_M()
 	{
 		this->M[M1[0]][M1[1]] = 'O';
 	}
+	this->v1.push_back(M1[0]);
+	this->v1.push_back(M1[1]);
 }
 
 int Model_n:: check_win()
@@ -172,8 +175,27 @@ void Model_n::read_file(ifstream &in_read)
 	getline(in_read, temp);
 }
 
-void Model_n::inport_infor(ifstream &in1, string player1, string player2,int x)
+void Model_n::read_file1(string s)
 {
+	ifstream in;
+	in.open("caro1.ini");
+	while (in.eof() == false)
+	{
+		string s;
+		getline(in, s, ',');
+		//int i = stoi(s);
+		if (s != "")
+		{
+			this->v1.push_back(stoi(s));
+		}
+	}
+
+}
+
+void Model_n::inport_infor(string str, string player1, string player2,int x)
+{
+	ifstream in1;
+	in1.open(str, ios_base::in);
 	int dem = 0;
 	string s;
 	while (in1.eof() == false )
@@ -182,7 +204,7 @@ void Model_n::inport_infor(ifstream &in1, string player1, string player2,int x)
 		this->read_file(in1);
 		if (dem != 3 &&(this->player.name == player1 || this->player.name == player2))
 		{
-			cout << "a" << endl;
+			//cout << "a" << endl;
 			int v;
 			if (this->player.name == player1)
 			{
@@ -297,15 +319,68 @@ void Model_n::inport_infor(ifstream &in1, string player1, string player2,int x)
 		}
 		break;
 	}
+	in1.close();
 }
 
-void Model_n::outport_infor(ofstream & out)
+void Model_n::outport_infor(string str)
 {
+	ofstream in1;
+	in1.open(str, ios_base::out);
 	int a = this->v.size();
 	//cout << this->v.size();
 	for (int i = 0; i < a; i++)
 	{
-		out << this->v[i];
+		in1 << this->v[i];
 	}
+	in1.close();
 }
+
+void* Model_n::find_infor(string s, string s1)
+{
+	ifstream filein;
+	filein.open(s, ios_base::in);
+	nguoichoi* pl1 = new nguoichoi[2];
+	double d1, d2, d3;
+	d3 = -1;
+	d1 = -1;
+
+		while (filein.eof() == false)
+		{
+			this->read_file(filein);
+			if (this->player.name == s1)
+			{
+				pl1[0].name = this->player.name;
+				pl1[0].thang = this->player.thang;
+				pl1[0].thua = this->player.thua;
+				pl1[0].hoa = this->player.hoa;
+				d1 = stoi(pl1[0].thang) / (stoi(pl1[0].thang) + stoi(pl1[0].thua) + stoi(pl1[0].hoa));
+			}
+		}
+	filein.close();
+	ifstream filein1;
+	filein1.open(s,ios::in);
+	if(d1 != -1)
+	{
+		while (filein1.eof() == false)
+		{
+			this->read_file(filein1);
+				d2 = stoi(this->player.thang) / (stoi(this->player.thang) + stoi(this->player.thua) + stoi(this->player.hoa));
+				if ((abs(d2 - d1) < d3) || d3 == -1 || this->player.name != "")
+				{
+					pl1[1].name = this->player.name;
+						pl1[1].thang = this->player.thang;
+						pl1[1].thua = this->player.thua;
+						pl1[1].hoa = this->player.hoa;
+						d3 = abs(d2 - d1);
+				}
+		}
+	}
+	else
+	{
+		cout << "KHONG TIM THAY" << endl;
+	}
+	filein1.close();
+	return pl1;
+}
+
 
