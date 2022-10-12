@@ -21,5 +21,5 @@ public:
 	void read_file1(string s);
 	void inport_infor(string s, string player1, string player2,int x);
 	void outport_infor(string s);
-	void* find_infor(string s,string s1);
+	nguoichoi* find_infor(string s,string s1);
 };

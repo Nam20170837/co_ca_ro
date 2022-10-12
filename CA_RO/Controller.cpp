@@ -72,7 +72,8 @@ void Controller:: C()
  
 void Controller::D(string s)
 {
-	nguoichoi* nc = static_cast<nguoichoi*>(M.find_infor("caro.ini",s));
+	//nguoichoi* nc = static_cast<nguoichoi*>(M.find_infor("caro.ini",s));
+	nguoichoi* nc = M.find_infor("caro.ini", s);
 	cout << "Information of player:"<<endl;
 	cout << "Name:" << nc[0].name << endl;
 	cout << "Win:" << nc[0].thang << endl;
@@ -83,7 +84,6 @@ void Controller::D(string s)
 	cout << "Win:" << nc[1].thang << endl;
 	cout << "Loser:" << nc[1].thua << endl;
 	cout << "Draw:" << nc[1].hoa << endl;
-	delete nc;
 }
 
 void Controller::E()

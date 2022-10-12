@@ -7,7 +7,25 @@
 #include"Controller.h"
 
 using namespace std;
-
+void creat1()
+{
+	Controller nam;
+	nam.C();
+}
+void creat2()
+{
+	Controller nam;
+	string name;
+	cout << "Enter the name:";
+	cin.ignore();
+	getline(cin, name);
+	nam.D(name);
+}
+void creat4()
+{
+	Controller nam;
+	nam.E();
+}
 int main()
 { 
 	int chosse = 0;
@@ -30,23 +48,15 @@ int main()
 		}
 		if (chosse == 1)
 		{
-			Controller nam;
-			nam.C();
+			creat1();
 		}
 		else if (chosse == 2)
 		{
-			Controller nam;
-			string name;
-			cout << "Enter the name:";
-			cin.ignore();
-			getline(cin, name);
-			
-			nam.D(name);
+			creat2();
 		}
 		else if (chosse == 4)
 		{
-			Controller nam;
-			nam.E();
+			creat4();
 		}
 		else if (chosse == 3)
 		{

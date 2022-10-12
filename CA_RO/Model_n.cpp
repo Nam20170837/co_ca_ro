@@ -189,6 +189,7 @@ void Model_n::read_file1(string s)
 			this->v1.push_back(stoi(s));
 		}
 	}
+	in.close();
 
 }
 
@@ -335,11 +336,12 @@ void Model_n::outport_infor(string str)
 	in1.close();
 }
 
-void* Model_n::find_infor(string s, string s1)
+nguoichoi* Model_n::find_infor(string s, string s1)
 {
 	ifstream filein;
 	filein.open(s, ios_base::in);
 	nguoichoi* pl1 = new nguoichoi[2];
+	//nguoichoi pl1[2];
 	double d1, d2, d3;
 	d3 = -1;
 	d1 = -1;
@@ -365,7 +367,7 @@ void* Model_n::find_infor(string s, string s1)
 		{
 			this->read_file(filein1);
 				d2 = stoi(this->player.thang) / (stoi(this->player.thang) + stoi(this->player.thua) + stoi(this->player.hoa));
-				if ((abs(d2 - d1) < d3) || d3 == -1 || this->player.name != "")
+				if ((abs(d2 - d1) < d3 || d3 == -1) && this->player.name != ""&& this->player.name != s1)
 				{
 					pl1[1].name = this->player.name;
 						pl1[1].thang = this->player.thang;
