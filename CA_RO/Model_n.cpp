@@ -385,4 +385,9 @@ nguoichoi* Model_n::find_infor(string s, string s1)
 	return pl1;
 }
 
+int Model_n::read_file_caro1(string s)
+{
+	return 0;
+}
+
 

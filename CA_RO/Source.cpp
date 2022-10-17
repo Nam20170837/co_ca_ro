@@ -1,17 +1,20 @@
-#include<iostream>
+﻿#include<iostream>
 #include<iomanip>
 #include<string>
 #include<fstream>
+#include <WS2tcpip.h>
 #include"View.h"
 #include"Model_n.h"
 #include"Controller.h"
-
+#pragma comment (lib, "ws2_32.lib")
 using namespace std;
 void creat1()
 {
+	
 	Controller nam;
-	nam.C();
+	nam.C1();
 }
+
 void creat2()
 {
 	Controller nam;
@@ -21,11 +24,13 @@ void creat2()
 	getline(cin, name);
 	nam.D(name);
 }
+
 void creat4()
 {
 	Controller nam;
 	nam.E();
 }
+
 int main()
 { 
 	int chosse = 0;
@@ -64,5 +69,7 @@ int main()
 		}
 		
 	}
+
+	//t1();
 	return 0;
 }

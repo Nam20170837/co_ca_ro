@@ -4,6 +4,9 @@
 #include"playerr.h"
 #include <chrono>
 #include <thread>
+#include <WS2tcpip.h>
+#include<string>
+#pragma comment (lib, "ws2_32.lib")
 class Controller
 {
 public:
@@ -16,5 +19,6 @@ public:
 	bool check();
 	void D(string s);
 	void E();
+	void C1();
 };
 

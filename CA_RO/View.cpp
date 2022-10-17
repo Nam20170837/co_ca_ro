@@ -64,6 +64,19 @@ void View::user()
 	getline(cin, this->player_2);
 }
 
+void View::user1()
+{
+	cout << "Enter the name:";
+	cin.ignore();
+	getline(cin, this->player_1);
+}
+void View::import_XY_1(int XY[3])
+{
+	XY[2] = 0;
+	cin >> XY[0];
+	cin >> XY[1];
+}
+
 
 
 
