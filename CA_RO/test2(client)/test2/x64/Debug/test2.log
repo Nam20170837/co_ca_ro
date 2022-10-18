@@ -1,0 +1,5 @@
+﻿  Source.cpp
+C:\Users\phamn\source\repos\test2\test2\Source.cpp(137,72): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\test2\test2\Source.cpp(178,69): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\test2\test2\Source.cpp(186,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  test2.vcxproj -> C:\Users\phamn\source\repos\test2\x64\Debug\test2.exe
