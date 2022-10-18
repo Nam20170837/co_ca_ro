@@ -11,6 +11,7 @@ void View::print(string s)
 
 void View::show(char c[10][10])
 {
+	cout << endl;
 	for (int i = 0; i < 10; i++)
 	{
 		cout << setw(2);
@@ -73,7 +74,9 @@ void View::user1()
 void View::import_XY_1(int XY[3])
 {
 	XY[2] = 0;
+	cout << "Enter X:";
 	cin >> XY[0];
+	cout << "Enter Y:";
 	cin >> XY[1];
 }
 

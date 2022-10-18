@@ -140,7 +140,8 @@ void Controller::C1()
 	string b;
 	string data;
 	this->V.player_2 = a;
-	while (true)
+	int start = 0;
+	while (start == 0)
 	{
 		V.import_XY_1(this->i_m);
 		bool test = false;
@@ -156,18 +157,14 @@ void Controller::C1()
 		}
 		M.input_M();
 		V.show(M.M);
-		int start = M.check_win();
+		start = M.check_win();
 		if (start == 0)
 		{
-			data = "0," +this->M.M1[0] + ',' + this->M.M1[1]+',';
+			data = "0," +to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
 		}
 		else if (start == 1)
 		{
-			data = "1," + this->M.M1[0] + ',' + this->M.M1[1]+',';
-		}
-		else if (start == 2)
-		{
-			data = "2," + this->M.M1[0] + ',' + this->M.M1[1]+',';
+			data = "1," + to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
 		}
 		int sendResult = send(clientSocket, data.c_str(), data.size() + 1, 0);
 		ZeroMemory(buf, 4096);
@@ -182,11 +179,12 @@ void Controller::C1()
 				gan += b[i];
 			}
 			else
-			{
+			{ 
 				if (xet == 0)
 				{
 					this->i_m[0] = stoi(gan);
-					gan = "";
+					gan = ""; 
+					xet++;
 				}
 				else if (xet == 1)
 				{
@@ -201,40 +199,11 @@ void Controller::C1()
 		this->M.input_M();
 		V.show(this-> M.M);
 		start = this->M.check_win();
-		if (start == 1 || start == 2)
+		if (start == 2)
 		{
-			if (start == 1)
-			{
-				data = "1,,,";
-			}
-			else
-			{
-				data = "2,,,";
-			}
+			data = "2,,,";
 			send(clientSocket, data.c_str(), data.size() + 1, 0);
 		}
-		
-
-
-
-		// Wait for client to send data
-		int bytesReceived = recv(clientSocket, buf, 4096, 0);
-		if (bytesReceived == SOCKET_ERROR)
-		{
-			cerr << "Error in recv(). Quitting" << endl;
-			break;
-		}
-
-		if (bytesReceived == 0)
-		{
-			cout << "Client disconnected " << endl;
-			break;
-		}
-
-		string a = string(buf, 0, bytesReceived);
-
-		// Echo message back to client
-		send(clientSocket, buf, bytesReceived + 1, 0);
 
 	}
 

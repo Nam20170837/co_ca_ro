@@ -1,5 +1,2 @@
-﻿  Controller.cpp
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(172,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(214,55): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(267,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  View.cpp
   CA_RO.vcxproj -> C:\Users\phamn\source\repos\CA_RO\x64\Debug\CA_RO.exe
