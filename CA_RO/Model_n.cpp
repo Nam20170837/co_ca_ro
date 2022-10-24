@@ -171,6 +171,9 @@ void Model_n::read_file(ifstream &in_read)
 	getline(in_read, this->player.thang,',');
 	getline(in_read, this->player.thua,',');
 	getline(in_read, this->player.hoa,',');
+	getline(in_read, this->player.name_thang, ',');
+	getline(in_read, this->player.name_thua, ',');
+	getline(in_read, this->player.name_hoa, ',');
 	string temp;
 	getline(in_read, temp);
 }
@@ -215,17 +218,29 @@ void Model_n::inport_infor(string str, string player1, string player2,int x)
 				case 1:
 					v = (stoi(this->player.thang))+1;
 					this->player.thang = to_string(v);
+					if(this->player.name_thang == "")
+						this->player.name_thang = player2;
+					else
+						this->player.name_thang = this->player.name_thang + "-" + player2;
 					break;
 				case 2:
 					v = (stoi(this->player.thua)) + 1;
 					this->player.thua = to_string(v);
+					if (this->player.name_thua == "")
+						this->player.name_thua = player2;
+					else
+						this->player.name_thua = this->player.name_thua + "-" + player2;
 					break;
 				case 3:
 					v = (stoi(this->player.hoa)) + 1;
 					this->player.hoa = to_string(v);
+					if (this->player.name_hoa == "")
+						this->player.name_hoa = player2;
+					else
+						this->player.name_hoa = this->player.name_hoa + "-" + player2;
 					break;
 				}
-				s = this->player.name + "," + this->player.thang + "," + this->player.thua + "," + this->player.hoa + ","+"\n";
+				s = this->player.name + "," + this->player.thang + "," + this->player.thua + "," + this->player.hoa + ","+this->player.name_thang + "," + this->player.name_thua + "," + this->player.name_hoa + "," +"\n";
 				this->v.push_back(s);
 			}
 			else
@@ -236,23 +251,36 @@ void Model_n::inport_infor(string str, string player1, string player2,int x)
 				case 2:
 					v = (stoi(this->player.thang)) + 1;
 					this->player.thang = to_string(v);
+					if(this->player.name_thang == "")
+						this->player.name_thang = player1;
+					else
+						this->player.name_thang = this->player.name_thang + "-" + player1;
+					
 					break;
 				case 1:
 					v = (stoi(this->player.thua)) + 1;
 					this->player.thua = to_string(v);
+					if (this->player.name_thua == "")
+						this->player.name_thua = player1;
+					else
+						this->player.name_thua = this->player.name_thua + "-" + player1;
 					break;
 				case 3:
 					v = (stoi(this->player.hoa)) + 1;
 					this->player.hoa = to_string(v);
+					if (this->player.name_hoa == "")
+						this->player.name_hoa = player1;
+					else
+						this->player.name_hoa = this->player.name_hoa + "-" + player1;
 					break;
 				}
-				s = this->player.name + "," + this->player.thang + "," + this->player.thua + "," + this->player.hoa + ","+"\n";
+				s = this->player.name + "," + this->player.thang + "," + this->player.thua + "," + this->player.hoa + "," + this->player.name_thang + "," + this->player.name_thua + "," + this->player.name_hoa + "," + "\n";
 				this->v.push_back(s);
 			}
 		}
 		else
 		{
-			s = this->player.name + "," + this->player.thang + "," + this->player.thua + "," + this->player.hoa + "," + "\n";
+			s = this->player.name + "," + this->player.thang + "," + this->player.thua + "," + this->player.hoa + "," + this->player.name_thang + "," + this->player.name_thua + "," + this->player.name_hoa + "," + "\n";
 			if (this->player.name != "")
 			{
 				this->v.push_back(s);
@@ -266,21 +294,21 @@ void Model_n::inport_infor(string str, string player1, string player2,int x)
 		switch (x)
 		{
 		case 1:
-			s = player1 + ",1,0,0,\n";
+			s = player1 + ",1,0,0," + player2 + ",,,\n";
 			this->v.push_back(s);
-			s = player2 + ",0,1,0,\n";
+			s = player2 + ",0,1,0," + "," + player1 + ",,\n";
 			this->v.push_back(s);
 			break;
 		case 2:
-			s = player2 + ",1,0,0,\n";
+			s = player2 + ",1,0,0," + player1 + ",,,\n";
 			this->v.push_back(s);
-			s = player1 + ",0,1,0,\n";
+			s = player1 + ",0,1,0," + "," + player2 + ",,\n";
 			this->v.push_back(s);
 			break;
 		case 3:
-			s = player1 + ",0,0,1,\n";
+			s = player1 + ",0,0,1,,," + player2 + ",";
 			this->v.push_back(s);
-			s = player2 + ",0,0,1,\n";
+			s = player2 + ",0,0,1,,," + player1 + ",";
 			this->v.push_back(s);
 			break;
 		}
@@ -289,15 +317,15 @@ void Model_n::inport_infor(string str, string player1, string player2,int x)
 		switch (x)
 		{
 		case 1:
-			s = player2 + ",0,1,0,\n";
+			s = player2 + ",0,1,0," + "," + player1 + ",,\n";
 			this->v.push_back(s);
 			break;
 		case 2:
-			s = player2 + ",1,0,0,\n";
+			s = player2 + ",1,0,0," + player1 + ",,,\n";
 			this->v.push_back(s);
 			break;
 		case 3:
-			s = player2 + ",0,0,1,\n";
+			s = player2 + ",0,0,1,,," + player1 + ",";
 			this->v.push_back(s);
 			break;
 		}
@@ -306,15 +334,15 @@ void Model_n::inport_infor(string str, string player1, string player2,int x)
 		switch (x)
 		{
 		case 1:
-			s = player1 + ",1,0,0,\n";
+			s = player1 + ",1,0,0," + player2 + ",,,\n";
 			this->v.push_back(s);
 			break;
 		case 2:
-			s = player1 + ",0,1,0,\n";
+			s = player1 + ",0,1,0," + "," + player2 + ",,\n";
 			this->v.push_back(s);
 			break;
 		case 3:
-			s = player1 + ",0,0,1,\n";
+			s = player1 + ",0,0,1,,," + player2 + ",";
 			this->v.push_back(s);
 			break;
 		}

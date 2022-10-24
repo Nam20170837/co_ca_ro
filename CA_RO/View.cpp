@@ -11,6 +11,7 @@ void View::print(string s)
 
 void View::show(char c[10][10])
 {
+	system("cls");
 	cout << endl;
 	for (int i = 0; i < 10; i++)
 	{

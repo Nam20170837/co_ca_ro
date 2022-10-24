@@ -10,9 +10,8 @@
 using namespace std;
 void creat1()
 {
-	
 	Controller nam;
-	nam.C1();
+	nam.C();
 }
 
 void creat2()
@@ -30,27 +29,24 @@ void creat4()
 	Controller nam;
 	nam.E();
 }
+void creat5()
+{
+	Controller nam;
+	nam.C1();
+}
 
 int main()
 { 
 	int chosse = 0;
-	while (chosse != 3)
+	do
 	{
 		cout << "NHAP LUA CHON" << endl;
 		cout << "1: CHOI TIEP" << endl;
 		cout << "2: XUAT THONG TIN" << endl;
 		cout << "3: DUNG CHOI" << endl;
 		cout << "4: IN TRAN DAU TRUOC"<<endl;
+		cout << "5: CHOI HAI NGUOI" << endl;
 		cin >> chosse;
-		while (chosse != 1 && chosse != 2 && chosse != 3 && chosse != 4)
-		{
-			cout << "NHAP LUA CHON" << endl;
-			cout << "1: CHOI TIEP" << endl;
-			cout << "2: XUAT THONG TIN" << endl;
-			cout << "3: DUNG CHOI" << endl;
-			cout << "4: IN TRAN DAU TRUOC" << endl;
-			cin >> chosse;
-		}
 		if (chosse == 1)
 		{
 			creat1();
@@ -67,8 +63,12 @@ int main()
 		{
 			break;
 		}
-		
-	}
+		else if (chosse == 5)
+		{
+			creat5();
+			
+		}
+	} while (chosse != 3);
 
 	//t1();
 	return 0;

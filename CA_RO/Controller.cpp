@@ -1,5 +1,5 @@
 #include "Controller.h"
-
+#include <stdlib.h>
 #include<iostream>
 using namespace std;
 
@@ -73,7 +73,7 @@ void Controller:: C()
 
 void Controller::C1()
 {
-	V.user1();
+	
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
 
@@ -117,7 +117,6 @@ void Controller::C1()
 
 	ZeroMemory(host, NI_MAXHOST); // same as memset(host, 0, NI_MAXHOST);
 	ZeroMemory(service, NI_MAXSERV);
-	cout << "Nam" << endl;
 	if (getnameinfo((sockaddr*)&client, sizeof(client), host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0)
 	{
 		cout << host << " connected on port " << service << endl;
@@ -135,80 +134,119 @@ void Controller::C1()
 	// While loop: accept and echo message back to client
 	char buf[4096];
 	ZeroMemory(buf, 4096);
+	int sendResult;
 	int bytesReceived1 = recv(clientSocket, buf, 4096, 0);
 	string a = string(buf, 0, bytesReceived1);
-	string b;
-	string data;
-	this->V.player_2 = a;
-	int start = 0;
-	while (start == 0)
+	cout << a;
+	if (a == "1")
 	{
-		V.import_XY_1(this->i_m);
-		bool test = false;
-		bool test1 = false;
-		while (test == false || test1 == false)
+
+		string b;
+		string data;
+		V.user1();
+		int start = 0;
+		sendResult = send(clientSocket, this->V.player_1.c_str(), this->V.player_1.size() + 1, 0);
+		bytesReceived1 = recv(clientSocket, buf, 4096, 0);
+		this->V.player_2 = string(buf,0, bytesReceived1);
+		while (true)
 		{
-			test = M.input_M1(this->i_m);
-			test1 = this->check();
-			if (test == false || test1 == false)
+			V.import_XY_1(this->i_m);
+			bool test = false;
+			bool test1 = false;
+			while (test == false || test1 == false)
 			{
-				V.import_XY_1(this->i_m);
+				test = M.input_M1(this->i_m);
+				test1 = this->check();
+				if (test == false || test1 == false)
+				{
+					V.import_XY_1(this->i_m);
+				}
 			}
-		}
-		M.input_M();
-		V.show(M.M);
-		start = M.check_win();
-		if (start == 0)
-		{
-			data = "0," +to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
-		}
-		else if (start == 1)
-		{
-			data = "1," + to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
-		}
-		int sendResult = send(clientSocket, data.c_str(), data.size() + 1, 0);
-		ZeroMemory(buf, 4096);
-		int bytesReceived1 = recv(clientSocket, buf, 4096, 0);
-		b = string(buf, 0, bytesReceived1);
-		string gan;
-		int xet = 0;
-		for (int i = 0; i < b.size(); i++)
-		{
-			if (b[i] != ',')
+			M.input_M();
+			V.show(M.M);
+			start = M.check_win();
+			if (start == 0)
 			{
-				gan += b[i];
+				data = "0," + to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
+				sendResult = send(clientSocket, data.c_str(), data.size() + 1, 0);
 			}
-			else
-			{ 
-				if (xet == 0)
+			else if (start == 1)
+			{
+				data = "1," + to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
+				sendResult = send(clientSocket, data.c_str(), data.size() + 1, 0);
+				cout << "X WIN" << endl;
+				break;
+			}
+
+			ZeroMemory(buf, 4096);
+			int bytesReceived1 = recv(clientSocket, buf, 4096, 0);
+			b = string(buf, 0, bytesReceived1);
+			string gan;
+			int xet = 0;
+			for (int i = 0; i < b.size(); i++)
+			{
+				if (b[i] != ',')
 				{
-					this->i_m[0] = stoi(gan);
-					gan = ""; 
-					xet++;
+					gan += b[i];
 				}
-				else if (xet == 1)
+				else
 				{
-					this->i_m[1] = stoi(gan);
-					gan = "";
-					this->i_m[2] = 1;
+					if (xet == 0)
+					{
+						this->i_m[0] = stoi(gan);
+						gan = "";
+						xet++;
+					}
+					else if (xet == 1)
+					{
+						this->i_m[1] = stoi(gan);
+						gan = "";
+						this->i_m[2] = 1;
+					}
 				}
+
+			}
+			this->M.input_M1(this->i_m);
+			this->M.input_M();
+			V.show(this->M.M);
+			start = this->M.check_win();
+			if (start == 2)
+			{
+				data = "2,,,";
+				send(clientSocket, data.c_str(), data.size() + 1, 0);
+				cout << "O WIN" << endl;
+				break;
+
 			}
 
 		}
-		this->M.input_M1(this->i_m);
-		this->M.input_M();
-		V.show(this-> M.M);
-		start = this->M.check_win();
-		if (start == 2)
+		M.inport_infor("caro.ini", V.player_1, V.player_2, start);
+		M.outport_infor("caro.ini");
+		// Close the socket
+		closesocket(clientSocket);
+	}
+	else
+	{
+		bytesReceived1 = recv(clientSocket, buf, 4096, 0);
+		string c = string(buf, 0, bytesReceived1);
+		cout << c;
+		ifstream filein;
+		filein.open("caro.ini", ios_base::in);
+
+		while (filein.eof() == false)
 		{
-			data = "2,,,";
-			send(clientSocket, data.c_str(), data.size() + 1, 0);
+			this->M.read_file(filein);
+			cout << this->M.player.name;
+			if (this->M.player.name == c)
+			{
+				string d = this->M.player.name + "," + this->M.player.thang + "," + this->M.player.thua + "," + this->M.player.hoa + "," + this->M.player.name_thang + "," + this->M.player.name_thua + "," + this->M.player.name_hoa + ",";
+				cout << d << endl;
+				sendResult = send(clientSocket, d.c_str(), d.size() + 1, 0);
+				break;
+			}
 		}
 
 	}
-
-	// Close the socket
-	closesocket(clientSocket);
 
 	// Cleanup winsock
 	WSACleanup();
