@@ -1,0 +1,15 @@
+﻿  Controller.cpp
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(148,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(171,69): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(176,69): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(216,56): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(244,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(274,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Model_n.cpp
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Model_n.cpp(358,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  View.cpp
+  Generating code
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 148 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  CA_RO.vcxproj -> C:\Users\phamn\source\repos\CA_RO\x64\Release\CA_RO.exe

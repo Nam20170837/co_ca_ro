@@ -1,8 +1,7 @@
-﻿  Controller.cpp
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(148,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(171,69): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(176,69): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(216,56): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(244,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\phamn\source\repos\CA_RO\CA_RO\Controller.cpp(274,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  CA_RO.vcxproj -> C:\Users\phamn\source\repos\CA_RO\x64\Debug\CA_RO.exe
+﻿Source.obj : error LNK2019: unresolved external symbol mysql_error referenced in function main
+Source.obj : error LNK2019: unresolved external symbol mysql_init referenced in function main
+Source.obj : error LNK2019: unresolved external symbol mysql_real_connect referenced in function main
+Source.obj : error LNK2019: unresolved external symbol mysql_query referenced in function main
+Source.obj : error LNK2019: unresolved external symbol mysql_store_result referenced in function main
+Source.obj : error LNK2019: unresolved external symbol mysql_fetch_row referenced in function main
+C:\Users\phamn\source\repos\CA_RO\x64\Debug\CA_RO.exe : fatal error LNK1120: 6 unresolved externals
