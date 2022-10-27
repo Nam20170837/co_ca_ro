@@ -1,7 +1,2 @@
-﻿Source.obj : error LNK2019: unresolved external symbol mysql_error referenced in function main
-Source.obj : error LNK2019: unresolved external symbol mysql_init referenced in function main
-Source.obj : error LNK2019: unresolved external symbol mysql_real_connect referenced in function main
-Source.obj : error LNK2019: unresolved external symbol mysql_query referenced in function main
-Source.obj : error LNK2019: unresolved external symbol mysql_store_result referenced in function main
-Source.obj : error LNK2019: unresolved external symbol mysql_fetch_row referenced in function main
-C:\Users\phamn\source\repos\CA_RO\x64\Debug\CA_RO.exe : fatal error LNK1120: 6 unresolved externals
+﻿  Source.cpp
+  CA_RO.vcxproj -> C:\Users\phamn\source\repos\CA_RO\x64\Debug\CA_RO.exe
