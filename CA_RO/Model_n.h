@@ -1,9 +1,11 @@
 #pragma once
+
 #include<string>
 #include<fstream>
 #include<vector>
 #include<fstream>
 #include"playerr.h"
+//#include<mysql.h>
 using namespace std;
 class Model_n
 {
@@ -23,4 +25,6 @@ public:
 	void outport_infor(string s);
 	nguoichoi* find_infor(string s,string s1);
 	int read_file_caro1(string s);
+	void database_MYSQL(string player1,string player2,int x);
+
 };

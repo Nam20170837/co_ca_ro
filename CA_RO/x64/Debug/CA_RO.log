@@ -1,2 +1,7 @@
 ﻿  Source.cpp
-  CA_RO.vcxproj -> C:\Users\phamn\source\repos\CA_RO\x64\Debug\CA_RO.exe
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Source.cpp(123,134): error C2065: 'userName': undeclared identifier
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Source.cpp(123,153): error C2065: 'userPhone': undeclared identifier
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Source.cpp(123,173): error C2065: 'userPassportNo': undeclared identifier
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Source.cpp(123,198): error C2065: 'userTicket': undeclared identifier
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Source.cpp(123,219): error C2065: 'userFlightNo': undeclared identifier
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Source.cpp(123,242): error C2065: 'userAddress': undeclared identifier

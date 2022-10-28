@@ -56,6 +56,7 @@ void Controller:: C()
 		}
 	}
 	M.inport_infor("caro.ini", V.player_1, V.player_2, start);
+	M.database_MYSQL(V.player_1, V.player_2, start);
 	M.outport_infor("caro.ini");
 	ofstream out_caro1;
 	out_caro1.open("caro1.ini");

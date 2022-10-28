@@ -6,7 +6,6 @@
 #include"View.h"
 #include"Model_n.h"
 #include"Controller.h"
-#include<mysql.h>
 #pragma comment (lib, "ws2_32.lib")
 using namespace std;
 void creat1()
@@ -92,10 +91,11 @@ int main()
 //	MYSQL* conn;
 //	MYSQL_ROW row;
 //	MYSQL_RES* res;
+//	
 //	conn = mysql_init(0);
 //
 //	conn = mysql_real_connect(conn, "localhost", "root", "123456", "testdb", 3306, NULL, 0);
-//	//INSERT INTO test(id, name, score) VALUES(1, "Marianne", 89);
+//	INSERT INTO test(id, name, score) VALUES(1, "Marianne", 89);
 //	if (conn) {
 //		puts("Successful connection to database!");
 //
@@ -104,10 +104,23 @@ int main()
 //		qstate = mysql_query(conn, q);
 //		if (!qstate)
 //		{
+//			/*string sqlupdate = "UPDATE test SET name ='k' WHERE id= 1";
+//			const char* n = sqlupdate.c_str();
+//			mysql_query(conn, n);*/
 //			res = mysql_store_result(conn);
+//			string sqlupdate = "UPDATE test SET name = 'rrr' WHERE name = 'Ling'";
+//			const char* n = sqlupdate.c_str();
+//			mysql_query(conn, n);
+//			res = mysql_store_result(conn);
+//			/*string sss = "INSERT INTO test(id, name, score) VALUES(4, 'HOANG', 68)";
+//			n = sss.c_str();
+//			mysql_query(conn, n);*/
+//			/*int ttt = mysql_num_rows(res);
+//			cout << ttt<<endl;*/
 //			while (row = mysql_fetch_row(res))
 //			{
 //				printf("ID: %s, Name: %s, Value: %s\n", row[0], row[1], row[2]);
+//
 //			}
 //		}
 //		else
@@ -118,7 +131,7 @@ int main()
 //	else {
 //		puts("Connection to database has failed!");
 //	}
-//	string insert_query = "insert into userreservation_tb (u_name, u_phone, u_passportno, u_ticket, u_flightno, u_address) values ('" + userName + "','" + userPhone + "','" + userPassportNo + "','" + userTicket + "','" + userFlightNo + "','" + userAddress + "')";
+//	
 //
 //	return 0;
 //}
