@@ -222,6 +222,7 @@ void Controller::C1()
 
 		}
 		M.inport_infor("caro.ini", V.player_1, V.player_2, start);
+		M.database_MYSQL(V.player_1, V.player_2, start);
 		M.outport_infor("caro.ini");
 		// Close the socket
 		closesocket(clientSocket);
@@ -255,7 +256,8 @@ void Controller::C1()
  
 void Controller::D(string s)
 {
-	nguoichoi* nc = M.find_infor("caro.ini", s);
+	/*nguoichoi* nc = M.find_infor("caro.ini", s);
+
 	cout << "Information of player:"<<endl;
 	cout << "Name:" << nc[0].name << endl;
 	cout << "Win:" << nc[0].thang << endl;
@@ -265,8 +267,11 @@ void Controller::D(string s)
 	cout << "Name:" << nc[1].name << endl;
 	cout << "Win:" << nc[1].thang << endl;
 	cout << "Loser:" << nc[1].thua << endl;
-	cout << "Draw:" << nc[1].hoa << endl;
+	cout << "Draw:" << nc[1].hoa << endl;*/
+	M.read_database_MYSQL(s);
+
 }
+
 
 void Controller::E()
 {

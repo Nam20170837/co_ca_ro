@@ -25,6 +25,7 @@ public:
 	void outport_infor(string s);
 	nguoichoi* find_infor(string s,string s1);
 	int read_file_caro1(string s);
-	void database_MYSQL(string player1,string player2,int x);
+	void database_MYSQL(string player1, string player2, int x); \
+	void read_database_MYSQL(string s);
 
 };

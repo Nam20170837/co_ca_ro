@@ -1,8 +1,10 @@
 ﻿  Model_n.cpp
 C:\Users\phamn\source\repos\CA_RO\CA_RO\Model_n.cpp(359,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Model_n.cpp(684,13): warning C4101: 'res1': unreferenced local variable
+C:\Users\phamn\source\repos\CA_RO\CA_RO\Model_n.cpp(685,12): warning C4101: 'rows1': unreferenced local variable
   Generating code
-  1 of 410 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  7 of 408 functions ( 1.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    13 functions had inline decision re-evaluated but remain unchanged
+    12 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   CA_RO.vcxproj -> C:\Users\phamn\source\repos\CA_RO\x64\Release\CA_RO.exe

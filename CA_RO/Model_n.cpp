@@ -674,5 +674,109 @@ void Model_n::database_MYSQL(string player1,string player2,int x)
 
 }
 
+void Model_n::read_database_MYSQL(string s)
+{
+	string id, name, win, lose, draw, name_win, name_lose, name_draw;
+	double d = -1;
+	MYSQL* conn;
+	MYSQL_ROW rows;
+	MYSQL_RES* res;
+	MYSQL_RES* res1;
+	MYSQL_ROW rows1;
+	conn = mysql_init(0);
+	conn = mysql_real_connect(conn, "localhost", "root", "123456", "dtb_caro", 3306, NULL, 0);
+	if (conn)
+	{
+		int qstate;
+		string query = "SELECT * FROM test_dtb_caro";
+		const char* q = query.c_str();
+		qstate = mysql_query(conn, q);
+		if (!qstate)
+		{
+			res = mysql_store_result(conn);
+			while (rows = mysql_fetch_row(res))
+			{
+				//id = rows[0];
+				name = rows[0];
+				win = rows[1];
+				lose = rows[2];
+				draw = rows[3];
+				name_win = rows[4];
+				name_lose = rows[5];
+				name_draw = rows[6];
+				if (s == name)
+				{
+					cout << "Information of player:" << endl;
+					cout << "Name:" << name << endl;
+					cout << "Win:" << win << endl;
+					cout << "Loser:" << lose << endl;
+					cout << "Draw:" << draw << endl;
+					cout << "Name_Win:" << name_win << endl;
+					cout << "Name_Lose:" << name_lose << endl;
+					cout << "Name_Draw:" << name_draw << endl;
+					d = stoi(win) / (stoi(win) + stoi(lose) + stoi(draw));
+					
+				}
+			}
+			mysql_close(conn);
+		}
+		else
+		{
+			cout << "QUERY FAILDED" << endl;
+		}
+	}
+	else
+	{
+		cout << "CONNECT TO DATABASE HAS FAILED" << endl;
+	}
+
+	conn = mysql_init(0);
+	conn = mysql_real_connect(conn, "localhost", "root", "123456", "dtb_caro", 3306, NULL, 0);
+	if (conn)
+	{
+		int qstate;
+		string query = "SELECT * FROM test_dtb_caro";
+		const char* q = query.c_str();
+		qstate = mysql_query(conn, q);
+		if (!qstate)
+		{
+			res = mysql_store_result(conn);
+			while (rows = mysql_fetch_row(res))
+			{
+				//id = rows[0];
+				if (d < (stoi(rows[1]) / (stoi(rows[1]) + stoi(rows[2]) + stoi(rows[3]))))
+				{
+					name = rows[0];
+					win = rows[1];
+					lose = rows[2];
+					draw = rows[3];
+					name_win = rows[4];
+					name_lose = rows[5];
+					name_draw = rows[6];
+					break;
+					
+				}
+			}
+			cout << "Information of same player:" << endl;
+			cout << "Name:" << name << endl;
+			cout << "Win:" << win << endl;
+			cout << "Loser:" << lose << endl;
+			cout << "Draw:" << draw << endl;
+			cout << "Name_Win:" << name_win << endl;
+			cout << "Name_Lose:" << name_lose << endl;
+			cout << "Name_Draw:" << name_draw << endl;
+			mysql_close(conn);
+		}
+		else
+		{
+			cout << "QUERY FAILDED" << endl;
+		}
+	}
+	else
+	{
+		cout << "CONNECT TO DATABASE HAS FAILED" << endl;
+	}
+}
+
 
 
