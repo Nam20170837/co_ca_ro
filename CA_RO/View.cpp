@@ -41,6 +41,7 @@ void View::show(char c[10][10])
 
 void View::import_XY(int XY[3])
 {
+	//Enter the position when you play on 1 PC
 	if (XY[2]==0)
 	{
 		cout << this->player_1 << " turn: " << endl;
@@ -58,22 +59,25 @@ void View::import_XY(int XY[3])
 
 void View::user()
 {
+	// ENTER the name of Player when you play on 1 PC
 	cout << "Enter the name of Player_1:";
 	cin.ignore();
 	getline(cin, this->player_1);
 	cout << "Enter the name of Player_2:";
-	//cin.ignore();
 	getline(cin, this->player_2);
 }
 
 void View::user1()
 {
+	// ENTER the name of Player when you play on 2 PC
 	cout << "Enter the name:";
 	cin.ignore();
 	getline(cin, this->player_1);
 }
+
 void View::import_XY_1(int XY[3])
 {
+	//Enter the position when you play on 2 PC
 	XY[2] = 0;
 	cout << "Enter X:";
 	cin >> XY[0];

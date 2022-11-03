@@ -3,36 +3,35 @@
 #include<string>
 #include<fstream>
 #include <WS2tcpip.h>
-#include"View.h"
-#include"Model_n.h"
 #include"Controller.h"
 #pragma comment (lib, "ws2_32.lib")
 using namespace std;
-void creat1()
+void start()
 {
 	Controller nam;
-	nam.C();
+	nam.game_mode_on_1_computer();
 }
 
-void creat2()
+void pri_infor()
 {
 	Controller nam;
 	string name;
 	cout << "Enter the name:";
 	cin.ignore();
 	getline(cin, name);
-	nam.D(name);
+	nam.information_of_player(name);
 }
 
-void creat4()
+void review_of_before_game()
 {
 	Controller nam;
-	nam.E();
+	nam.replay_privious_match();
 }
-void creat5()
+
+void play_online()
 {
 	Controller nam;
-	nam.C1();
+	nam.game_mode_on_1_computer();
 }
 
 int main()
@@ -40,24 +39,24 @@ int main()
 	int chosse = 0;
 	do
 	{
-		cout << "NHAP LUA CHON" << endl;
-		cout << "1: CHOI TIEP" << endl;
-		cout << "2: XUAT THONG TIN" << endl;
-		cout << "3: DUNG CHOI" << endl;
-		cout << "4: IN TRAN DAU TRUOC"<<endl;
-		cout << "5: CHOI HAI NGUOI" << endl;
+		cout << "ENTER YOUR SELCTION:" << endl;
+		cout << "[1]: START" << endl;
+		cout << "[2]: PRINT YOUR INFORMATION" << endl;
+		cout << "[3]: STOP" << endl;
+		cout << "[4]: REVIEW OF BEFORE GAME"<<endl;
+		cout << "[5]: PLAY ONLINE" << endl;
 		cin >> chosse;
 		if (chosse == 1)
 		{
-			creat1();
+			start();
 		}
 		else if (chosse == 2)
 		{
-			creat2();
+			pri_infor();
 		}
 		else if (chosse == 4)
 		{
-			creat4();
+			review_of_before_game();
 		}
 		else if (chosse == 3)
 		{
@@ -65,73 +64,10 @@ int main()
 		}
 		else if (chosse == 5)
 		{
-			creat5();
+			play_online();
 			
 		}
 	} while (chosse != 3);
 
 	return 0;
 }
-
-
-//#include<iostream>
-//#include<iomanip>
-//#include<string>
-//#include<fstream>
-//#include <WS2tcpip.h>
-//#include"View.h"
-//#include"Model_n.h"
-//#include"Controller.h"
-//#include<mysql.h>
-//using namespace std;
-//int qstate;
-//
-//int main()
-//{
-//	MYSQL* conn;
-//	MYSQL_ROW row;
-//	MYSQL_RES* res;
-//	
-//	conn = mysql_init(0);
-//
-//	conn = mysql_real_connect(conn, "localhost", "root", "123456", "testdb", 3306, NULL, 0);
-//	INSERT INTO test(id, name, score) VALUES(1, "Marianne", 89);
-//	if (conn) {
-//		puts("Successful connection to database!");
-//
-//		string query = "SELECT * FROM test";
-//		const char* q = query.c_str();
-//		qstate = mysql_query(conn, q);
-//		if (!qstate)
-//		{
-//			/*string sqlupdate = "UPDATE test SET name ='k' WHERE id= 1";
-//			const char* n = sqlupdate.c_str();
-//			mysql_query(conn, n);*/
-//			res = mysql_store_result(conn);
-//			string sqlupdate = "UPDATE test SET name = 'rrr' WHERE name = 'Ling'";
-//			const char* n = sqlupdate.c_str();
-//			mysql_query(conn, n);
-//			res = mysql_store_result(conn);
-//			/*string sss = "INSERT INTO test(id, name, score) VALUES(4, 'HOANG', 68)";
-//			n = sss.c_str();
-//			mysql_query(conn, n);*/
-//			/*int ttt = mysql_num_rows(res);
-//			cout << ttt<<endl;*/
-//			while (row = mysql_fetch_row(res))
-//			{
-//				printf("ID: %s, Name: %s, Value: %s\n", row[0], row[1], row[2]);
-//
-//			}
-//		}
-//		else
-//		{
-//			cout << "Query failed: " << mysql_error(conn) << endl;
-//		}
-//	}
-//	else {
-//		puts("Connection to database has failed!");
-//	}
-//	
-//
-//	return 0;
-//}

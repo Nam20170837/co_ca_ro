@@ -13,33 +13,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{19be29ba-c2e3-4186-8c70-fd30c25a855b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View">
+      <UniqueIdentifier>{1a19ffa6-6310-4ae3-9517-cd5f2853b6ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{df280581-ca19-4e4e-a29f-beef75268ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{c4c1f198-c68c-4768-98ea-7d27ac1ae416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{7b09d9cb-1c5a-47db-8da5-447c9be974e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{4addd91f-3435-4998-adfe-cdedc31aa892}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="View.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Handle_data_Model.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Connect_ini_Model.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Connect_MySQL_Model.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="Model_n.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="Controller.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="View.h">
+    <ClInclude Include="playerr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Model_n.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="playerr.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Connect_ini_Model.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Connect_MySQL_Model.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Handle_data_Model.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

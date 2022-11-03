@@ -1,22 +1,12 @@
 #include "Controller.h"
 #include <stdlib.h>
 #include<iostream>
+#define data_caro "caro.ini"
+#define replay "caro1.ini"
 using namespace std;
 
-bool Controller::check()
-{
-	if (0 < this->i_m[0] && this->i_m[0] < 11 && 0 < this->i_m[1] && this->i_m[1] < 11)
-	{
-		return true;
-	}
-	else
-	{
-		cout << "The position is not suitable" << endl;
-		return false;
-	}
-}
-
-void Controller:: C()
+//Play on 1 PC
+void Controller:: game_mode_on_1_computer()
 {
 	int start = 0;
 	V.user();
@@ -24,19 +14,17 @@ void Controller:: C()
 	{
 		V.import_XY(this->i_m);
 		bool test = false;
-		bool test1 = false;
-		while (test == false || test1 == false)
+		while (test == false)
 		{
-			test = M.input_M1(this->i_m);
-			test1 = this->check();
-			if (test == false || test1 == false)
+			test = h_data_model.check_input_position(this->i_m);
+			if (test == false )
 			{
 				V.import_XY(this->i_m);
 			}
 		}
-		M.input_M();
-		V.show(M.M);
-		start = M.check_win();
+		h_data_model.input_M();
+		V.show(h_data_model.M);
+		start = h_data_model.check_win();
 		if (start == 1)
 		{
 			V.print(V.player_1 + " chien thang:");
@@ -48,23 +36,22 @@ void Controller:: C()
 		if (this->i_m[2] == 0)
 		{
 			this->i_m[2] = 1;
-			//cout << 'a';
 		}
 		else
 		{
 			this->i_m[2] = 0;
 		}
 	}
-	M.inport_infor("caro.ini", V.player_1, V.player_2, start);
-	M.database_MYSQL(V.player_1, V.player_2, start);
-	M.outport_infor("caro.ini");
+	c_ini_modle.inport_infor(data_caro, V.player_1, V.player_2, start);
+	c_SQL_model.database_MYSQL(V.player_1, V.player_2, start);
+	c_ini_modle.outport_infor(data_caro);
 	ofstream out_caro1;
-	out_caro1.open("caro1.ini");
+	out_caro1.open(replay);
 	out_caro1.clear();
-	for (int i = 0; i < M.v1.size(); i++)
+	for (int i = 0; i < h_data_model.v1.size(); i++)
 	{
-		out_caro1 << M.v1[i];
-		if (i != M.v1.size() - 1)
+		out_caro1 << h_data_model.v1[i];
+		if (i != h_data_model.v1.size() - 1)
 		{
 			out_caro1 << ",";
 		}
@@ -72,7 +59,8 @@ void Controller:: C()
 	}
 }
 
-void Controller::C1()
+//Play on 2 PC
+void Controller::game_mode_on_2_computer()
 {
 	
 	WSADATA wsData;
@@ -138,7 +126,6 @@ void Controller::C1()
 	int sendResult;
 	int bytesReceived1 = recv(clientSocket, buf, 4096, 0);
 	string a = string(buf, 0, bytesReceived1);
-	cout << a;
 	if (a == "1")
 	{
 
@@ -153,27 +140,25 @@ void Controller::C1()
 		{
 			V.import_XY_1(this->i_m);
 			bool test = false;
-			bool test1 = false;
-			while (test == false || test1 == false)
+			while (test == false)
 			{
-				test = M.input_M1(this->i_m);
-				test1 = this->check();
-				if (test == false || test1 == false)
+				test = h_data_model.check_input_position(this->i_m);
+				if (test == false )
 				{
 					V.import_XY_1(this->i_m);
 				}
 			}
-			M.input_M();
-			V.show(M.M);
-			start = M.check_win();
+			h_data_model.input_M();
+			V.show(h_data_model.M);
+			start = h_data_model.check_win();
 			if (start == 0)
 			{
-				data = "0," + to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
+				data = "0," + to_string(this->h_data_model.M1[0]) + "," + to_string(this->h_data_model.M1[1]) + ",";
 				sendResult = send(clientSocket, data.c_str(), data.size() + 1, 0);
 			}
 			else if (start == 1)
 			{
-				data = "1," + to_string(this->M.M1[0]) + "," + to_string(this->M.M1[1]) + ",";
+				data = "1," + to_string(this->h_data_model.M1[0]) + "," + to_string(this->h_data_model.M1[1]) + ",";
 				sendResult = send(clientSocket, data.c_str(), data.size() + 1, 0);
 				cout << "X WIN" << endl;
 				break;
@@ -207,10 +192,10 @@ void Controller::C1()
 				}
 
 			}
-			this->M.input_M1(this->i_m);
-			this->M.input_M();
-			V.show(this->M.M);
-			start = this->M.check_win();
+			this->h_data_model.check_input_position(this->i_m);
+			this->h_data_model.input_M();
+			V.show(this->h_data_model.M);
+			start = this->h_data_model.check_win();
 			if (start == 2)
 			{
 				data = "2,,,";
@@ -221,9 +206,9 @@ void Controller::C1()
 			}
 
 		}
-		M.inport_infor("caro.ini", V.player_1, V.player_2, start);
-		M.database_MYSQL(V.player_1, V.player_2, start);
-		M.outport_infor("caro.ini");
+		c_ini_modle.inport_infor(data_caro, V.player_1, V.player_2, start);
+		c_SQL_model.database_MYSQL(V.player_1, V.player_2, start);
+		c_ini_modle.outport_infor(data_caro);
 		// Close the socket
 		closesocket(clientSocket);
 	}
@@ -233,16 +218,15 @@ void Controller::C1()
 		string c = string(buf, 0, bytesReceived1);
 		cout << c;
 		ifstream filein;
-		filein.open("caro.ini", ios_base::in);
+		filein.open(data_caro, ios_base::in);
 
 		while (filein.eof() == false)
 		{
-			this->M.read_file(filein);
-			cout << this->M.player.name;
-			if (this->M.player.name == c)
+			this->c_ini_modle.read_file_ini(filein);
+			cout << this->c_ini_modle.player.name;
+			if (this->c_ini_modle.player.name == c)
 			{
-				string d = this->M.player.name + "," + this->M.player.thang + "," + this->M.player.thua + "," + this->M.player.hoa + "," + this->M.player.name_thang + "," + this->M.player.name_thua + "," + this->M.player.name_hoa + ",";
-				cout << d << endl;
+				string d = this->c_ini_modle.player.name + "," + this->c_ini_modle.player.thang + "," + c_ini_modle.player.thua + "," + c_ini_modle.player.hoa + "," + c_ini_modle.player.name_thang + "," + c_ini_modle.player.name_thua + "," + c_ini_modle.player.name_hoa + ",";
 				sendResult = send(clientSocket, d.c_str(), d.size() + 1, 0);
 				break;
 			}
@@ -254,7 +238,8 @@ void Controller::C1()
 	WSACleanup();
 }
  
-void Controller::D(string s)
+//Check information of Player
+void Controller::information_of_player(string s)
 {
 	/*nguoichoi* nc = M.find_infor("caro.ini", s);
 
@@ -268,21 +253,21 @@ void Controller::D(string s)
 	cout << "Win:" << nc[1].thang << endl;
 	cout << "Loser:" << nc[1].thua << endl;
 	cout << "Draw:" << nc[1].hoa << endl;*/
-	M.read_database_MYSQL(s);
+	c_SQL_model.read_database_MYSQL(s);
 
 }
 
-
-void Controller::E()
+//Repaly privious match
+void Controller::replay_privious_match()
 {
 	int i1 = 0;
-	M.read_file1("caro1.ini");
-	int i2 = M.v1.size();
+	h_data_model.read_file_ini_push_vector(replay);
+	int i2 = this->h_data_model.v1.size();
 	int a[3];
 	for (int i = 0;i < i2; i = i+2)
 	{
-		a[0] = M.v1[i] + 1;
-		a[1] = M.v1[i+1] + 1;
+		a[0] = this->h_data_model.v1[i] + 1;
+		a[1] = this->h_data_model.v1[i+1] + 1;
 		if (i1 == 0)
 		{
 			a[2] = 0;
@@ -293,9 +278,9 @@ void Controller::E()
 			a[2] = 1;
 			i1 = 0;
 		}
-		M.input_M1(a);
-		M.input_M();
-		V.show(M.M);
+		h_data_model.check_input_position(a);
+		h_data_model.input_M();
+		V.show(h_data_model.M);
 		cout << endl;
 		this_thread::sleep_for(std::chrono::milliseconds(2000));
 	}

@@ -3,22 +3,35 @@
 #include<fstream>
 #include <stdlib.h>
 #include<mysql.h>
+
+#define password "123456"
+#define name_SQL "dtb_caro"
+
 //#include<stdio.h>
 using namespace std;
-bool Model_n::input_M1(int c_M1[3])
+bool Model_n::check_input_position(int c_M1[3])
 {
-	if (this->M[c_M1[0]-1][c_M1[1]-1] != 'X' && this->M[c_M1[0]-1][c_M1[1]-1] != 'O')
+	if (0 < c_M1[0] && c_M1[0] < 11 && 0 < c_M1[1] && c_M1[1] < 11)
 	{
-		this->M1[0] = c_M1[0]-1;
-		this->M1[1] = c_M1[1]-1;
-		this->M1[2] = c_M1[2];
-		return true;
+		if (this->M[c_M1[0] - 1][c_M1[1] - 1] != 'X' && this->M[c_M1[0] - 1][c_M1[1] - 1] != 'O')
+		{
+			this->M1[0] = c_M1[0] - 1;
+			this->M1[1] = c_M1[1] - 1;
+			this->M1[2] = c_M1[2];
+			return true;
+		}
+		else
+		{
+			cout << "The position is unoccupied" << endl;
+			return false;
+		}
 	}
 	else
 	{
-		cout << "The position is occupied" << endl;
+		cout << "The position is not suitable!!!" << endl;
 		return false;
 	}
+	
 }
 
 void Model_n::input_M()
@@ -166,7 +179,7 @@ int Model_n:: check_win()
     }
 }
 
-void Model_n::read_file(ifstream &in_read)
+void Model_n::read_file_ini(ifstream &in_read)
 {
 	getline(in_read, this->player.name,',');
 	getline(in_read, this->player.thang,',');
@@ -179,10 +192,10 @@ void Model_n::read_file(ifstream &in_read)
 	getline(in_read, temp);
 }
 
-void Model_n::read_file1(string s)
+void Model_n::read_file_ini_push_vector(string v)
 {
 	ifstream in;
-	in.open("caro1.ini");
+	in.open(v);
 	while (in.eof() == false)
 	{
 		string s;
@@ -206,7 +219,7 @@ void Model_n::inport_infor(string str, string player1, string player2,int x)
 	while (in1.eof() == false )
 	{
 		//cout << "nam" << endl;
-		this->read_file(in1);
+		this->read_file_ini(in1);
 		if (dem != 3 &&(this->player.name == player1 || this->player.name == player2))
 		{
 			//cout << "a" << endl;
@@ -377,7 +390,7 @@ nguoichoi* Model_n::find_infor(string s, string s1)
 
 		while (filein.eof() == false)
 		{
-			this->read_file(filein);
+			this->read_file_ini(filein);
 			if (this->player.name == s1)
 			{
 				pl1[0].name = this->player.name;
@@ -394,7 +407,7 @@ nguoichoi* Model_n::find_infor(string s, string s1)
 	{
 		while (filein1.eof() == false)
 		{
-			this->read_file(filein1);
+			this->read_file_ini(filein1);
 				d2 = stoi(this->player.thang) / (stoi(this->player.thang) + stoi(this->player.thua) + stoi(this->player.hoa));
 				if ((abs(d2 - d1) < d3 || d3 == -1) && this->player.name != ""&& this->player.name != s1)
 				{
@@ -436,7 +449,7 @@ void Model_n::database_MYSQL(string player1,string player2,int x)
 	const char* n;
 
 	conn = mysql_init(0);
-	conn = mysql_real_connect(conn, "localhost", "root", "123456", "dtb_caro", 3306, NULL, 0);
+	conn = mysql_real_connect(conn, "localhost", "root", password, name_SQL, 3306, NULL, 0);
 	if (conn)
 	{
 		
@@ -620,13 +633,13 @@ void Model_n::database_MYSQL(string player1,string player2,int x)
 				switch (x)
 				{
 				case 1:
-					sqlinsert = "INSERT INTO test_dtb_caro(NAME, WIN, LOSE, DRAW, NAME_WIN, NAME_LOSE, NAME_DRAW) VALUES('" + player2 + "', 0, 1, 0, '', '" + player1 + "', '')";
+					sqlinsert = "INSERT INTO test_dtb_caro(NAME, WIN, LOSE, DRAW, NAME_WIN, NAME_LOSE, NAME_DRAW) VALUES('" + player2 + "', 1, 0, 0, '', '" + player1 + "', '')";
 					n = sqlinsert.c_str();
 					mysql_query(conn, n);
 					break;
 
 				case 2:
-					sqlinsert = "INSERT INTO test_dtb_caro(NAME, WIN, LOSE, DRAW, NAME_WIN, NAME_LOSE, NAME_DRAW) VALUES('" + player2 + "', 1, 0, 0, '" + player1 + "', '', '')";
+					sqlinsert = "INSERT INTO test_dtb_caro(NAME, WIN, LOSE, DRAW, NAME_WIN, NAME_LOSE, NAME_DRAW) VALUES('" + player2 + "', 0, 1, 0, '" + player1 + "', '', '')";
 					n = sqlinsert.c_str();
 					mysql_query(conn, n);
 					break;
@@ -681,8 +694,6 @@ void Model_n::read_database_MYSQL(string s)
 	MYSQL* conn;
 	MYSQL_ROW rows;
 	MYSQL_RES* res;
-	MYSQL_RES* res1;
-	MYSQL_ROW rows1;
 	conn = mysql_init(0);
 	conn = mysql_real_connect(conn, "localhost", "root", "123456", "dtb_caro", 3306, NULL, 0);
 	if (conn)
@@ -715,7 +726,7 @@ void Model_n::read_database_MYSQL(string s)
 					cout << "Name_Lose:" << name_lose << endl;
 					cout << "Name_Draw:" << name_draw << endl;
 					d = stoi(win) / (stoi(win) + stoi(lose) + stoi(draw));
-					
+					break;
 				}
 			}
 			mysql_close(conn);
